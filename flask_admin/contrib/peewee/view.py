@@ -162,7 +162,7 @@ class ModelView(BaseModelView):
 
         for f in self._get_model_fields():
             # Verify type
-            field_class = type(f.get_column_type())
+            field_class = type(f)
 
             if field_class == ForeignKeyField:
                 columns.append(f.name)
@@ -174,9 +174,9 @@ class ModelView(BaseModelView):
     def scaffold_sortable_columns(self):
         columns = dict()
 
-        for n, f in self._get_model_fields():
+        for f in self._get_model_fields():
             if self.column_display_pk or type(f) != PrimaryKeyField:
-                columns[n] = f
+                columns[f.name] = f
 
         return columns
 
