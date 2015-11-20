@@ -149,7 +149,7 @@ class ModelView(BaseModelView):
         if model is None:
             model = self.model
 
-        return model._meta.get_sorted_fields()
+        return model._meta.sorted_fields
 
     def scaffold_pk(self):
         return get_primary_key(self.model)
