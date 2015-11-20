@@ -160,14 +160,14 @@ class ModelView(BaseModelView):
     def scaffold_list_columns(self):
         columns = []
 
-        for n, f in self._get_model_fields():
+        for f in self._get_model_fields():
             # Verify type
-            field_class = type(f)
+            field_class = type(f.get_column_type())
 
             if field_class == ForeignKeyField:
-                columns.append(n)
+                columns.append(f.name)
             elif self.column_display_pk or field_class != PrimaryKeyField:
-                columns.append(n)
+                columns.append(f.name)
 
         return columns
 
